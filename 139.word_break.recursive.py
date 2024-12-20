@@ -1,3 +1,5 @@
+# Approach: Recursive (Brute Force)
+# Time Complexity: O(2^n)
 # Verdict: TLE
 
 class Solution:
@@ -8,8 +10,6 @@ class Solution:
         L = len(s)
         for i in range(1, L+1):
             word = s[:i]
-            if word in wordSet:
-                res = self.wordBreak(s[i:], wordDict)
-                if res:
-                    return True
+            if word in wordSet and self.wordBreak(s[i:], wordDict):
+                return True
         return False
