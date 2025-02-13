@@ -1,4 +1,3 @@
-# 
 # Same as Fibonacci Numbers
 
 class Solution:

@@ -1,12 +1,10 @@
 class Solution:
     def coinChange(self, coins: list[int], amount: int):
-        cache = [0] + ([float('inf')] * amount)
+        dp = [float('inf')] * (amount+1)
+        dp[0] = 0
 
-        for coin in coins:
-            for i in range(coin, amount + 1):
-                cache[i] = min(cache[i], cache[i - coin] + 1)
+        for i in range(1, amount + 1):
+            for c in coins:
+                dp[i] = min(dp[i], dp[i - c] + 1)
 
-        if cache[-1] == float('inf'):
-            return -1
-        
-        return cache[-1]
+        return dp[amount] if dp[amount] != float('inf') else -1
