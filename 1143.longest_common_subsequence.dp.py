@@ -6,7 +6,6 @@
 import numpy as np
 
 class Solution:
-
     def longestCommonSubsequence(self, text1: str, text2: str) -> int:
         m = len(text1)+1
         n = len(text2)+1
