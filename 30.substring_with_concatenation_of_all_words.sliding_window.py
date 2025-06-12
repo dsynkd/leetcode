@@ -1,26 +1,24 @@
 from collections import Counter, defaultdict
+from copy import deepcopy
 
 class Solution:
     def findSubstring(self, s: str, words: list[str]) -> list[int]:
         L = len(words[0])
         permL = L * len(words)
-        counter1 = Counter(words)
-        output = []
-
+        wordCount = Counter(words)
+        res = []
         i = 0
         while i <= len(s) - permL:
             j = i
-            counter2 = defaultdict(int)
+            counter = defaultdict(int)
             c = 0
-            while j < i + permL:
-                word = s[j:j+L]
-                if word in counter1 and counter2[word] < counter1[word]:
-                    counter2[word] += 1
-                else:
+            while j-i < permL and (word := s[j:j+L]) in wordCount:
+                counter[word] += 1
+                if counter[word] > wordCount[word]:
                     break
                 j += L
-            if j == i + permL:
-                output.append(i)
+            if j - i == permL:
+                res.append(i)
             i += 1
         
-        return output
+        return res
