@@ -1,7 +1,3 @@
-# Approach: Two Pointer
-# Time Complexity: O(n^2), n for iterating through s, and n for iterating again during construction of l and r
-# Verdict: Pass
-
 class Solution:
     def longestPalindrome(self, s: str) -> str:
         res = ""
