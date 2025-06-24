@@ -1,8 +1,3 @@
-# Approach: Recursive (DFS)
-# Explanation: Iterating through each cell of the grid, every time we encounter some land, we increment a counter and
-## then use DFS to visit every other connected land and add them to a 'visited' hash set
-# Verdict: Pass
-
 class Solution:
     def numIslands(self, grid: list[list[str]]) -> int:
         m = len(grid)
