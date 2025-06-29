@@ -1,23 +1,25 @@
+from typing import Optional
+
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
+
 class Solution:
     def addTwoNumbers(self, l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:
-        l1list = []
-        l2list = []
-        while l1 is not None:
-            l1list.append(l1.val)
+        a = ''
+        b = ''
+        while l1:
+            a += str(l1.val)
             l1 = l1.next
-        while l2 is not None:
-            l2list.append(l2.val)
+        while l2:
+            b += str(l2.val)
             l2 = l2.next
-        l1list.reverse()
-        l2list.reverse()
-        l1num = int(''.join(str(e) for e in l1list ))
-        l2num = int(''.join(str(e) for e in l2list ))
-        r = l1num + l2num
-        sl = str(r)[::-1]
-        rs = ListNode()
-        p = rs
-        for s in sl:
-            rs.next = ListNode()
-            rs.next.val = int(s)
-            rs = rs.next
-        return p.next
+        res = int(a[::-1]) + int(b[::-1])
+        
+        root = ListNode()
+        node = root
+        for c in str(res)[::-1]:
+            node.next = ListNode(int(c))
+            node = node.next
+        return root.next
