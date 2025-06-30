@@ -1,5 +1,3 @@
-# Approach: Hash Table + Sort
-
 from collections import defaultdict
 
 class Solution:

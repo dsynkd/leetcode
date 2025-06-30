@@ -1,6 +1,3 @@
-# Direction = 0,1,2,3
-# 0 = Right, 1 = Down, 2 = Left, 3 = Top
-
 class Solution:
     def spiralOrder(self, matrix: list[list[int]]) -> list[int]:
         output = []

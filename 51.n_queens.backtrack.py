@@ -1,5 +1,3 @@
-# Approach: 1. Backtracking 2. Don't iterate through the same row twice to avoid duplicate results
-
 from copy import copy, deepcopy
 from optparse import Option
 from typing import Optional
