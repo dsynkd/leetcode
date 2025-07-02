@@ -3,21 +3,20 @@ from copy import deepcopy
 
 class Solution:
     def findSubstring(self, s: str, words: list[str]) -> list[int]:
-        L = len(words[0])
-        permL = L * len(words)
+        L = len(words[0]) # word length
+        S = L * len(words) # substring size
         wordCount = Counter(words)
         res = []
         i = 0
-        while i <= len(s) - permL:
+
+        while i <= len(s) - S:
             j = i
             counter = defaultdict(int)
             c = 0
-            while j-i < permL and (word := s[j:j+L]) in wordCount:
+            while j-i < S and (word := s[j:j+L]) in wordCount and counter[word] < wordCount[word]:
                 counter[word] += 1
-                if counter[word] > wordCount[word]:
-                    break
                 j += L
-            if j - i == permL:
+            if j - i == S:
                 res.append(i)
             i += 1
         
