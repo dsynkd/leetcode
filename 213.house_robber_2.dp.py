@@ -11,4 +11,3 @@ class Solution:
             dp1[i] = max(dp1[i-2] + nums[i], dp1[i-1])
             dp2[i] = max(dp2[i-2] + nums[i], dp2[i-1])
         return max(dp1[-2], dp2[-1])
-                
