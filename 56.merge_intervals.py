@@ -6,9 +6,9 @@ class Solution:
         for i in range(1, len(intervals)):
             cur = intervals[i]
             last = res[-1]
-            if cur[0] <= last[1]: #overlap
-                last[1] = max(cur[1], last[1])
-            else:
+            if cur[0] > last[1]: #overlap
                 res.append(cur)
+            else:
+                last[1] = max(cur[1], last[1])
 
         return res
