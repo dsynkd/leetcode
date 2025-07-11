@@ -2,27 +2,23 @@ from collections import defaultdict
 
 class Solution:
     def canFinish(self, numCourses: int, prerequisites: list[list[int]]) -> bool:
-        # Convert `prerequisites` from an list of pairs into a map of course number to list of requisites
-        preReqs = defaultdict(list)
+        adj = defaultdict(list)
         for i,j in prerequisites:
-            preReqs[i].append(j)
+            adj[i].append(j)
         
         visited = set()
-        def dfs(i):
-            if i in visited:
+        def dfs(node):
+            if node in visited:
                 return False
-            if not preReqs[i]:
+            if not adj[node]:
                 return True
-            visited.add(i)
-            for j in preReqs[i]:
-                if not dfs(j):
+            visited.add(node)
+            for n in adj[node]:
+                if not dfs(n):
                     return False
-            # Backtrack
-            visited.remove(i)
-            # We will not need to check prereqs for this course again in the future
-            del preReqs[i]
+            visited.remove(node)
+            del adj[node]
             return True
-
 
         for i in range(numCourses):
             if not dfs(i):
