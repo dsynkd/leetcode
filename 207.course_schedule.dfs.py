@@ -1,6 +1,3 @@
-# Approach: DFS, simply cycle detection
-# Verdict: Pass, but only if you remember to set the preReqs map to None after one DFS run
-
 from collections import defaultdict
 
 class Solution:
