@@ -1,13 +1,16 @@
 class Solution:
     def subsetsWithDup(self, nums: list[int]) -> list[list[int]]:
-        output = set()
+        res = set()
+        path = []
 
-        def dfs(i, combo):
+        def dfs(i):
             if i == len(nums):
-                output.add(tuple(sorted(combo)))
+                res.add(tuple(sorted(path)))
                 return
-            dfs(i+1, combo)
-            dfs(i+1, combo + [nums[i]])
+            path.append(nums[i])
+            dfs(i+1)
+            path.pop()
+            dfs(i+1)
         
-        dfs(0, [])
-        return [list(a) for a in output]
+        dfs(0)
+        return [list(a) for a in res]
