@@ -10,12 +10,15 @@ class Solution:
         def dfs(node):
             if node in visited:
                 return False
+
             if not adj[node]:
                 return True
+
             visited.add(node)
             for n in adj[node]:
                 if not dfs(n):
                     return False
+
             visited.remove(node)
             del adj[node]
             return True
