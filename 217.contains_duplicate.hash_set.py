@@ -1,5 +1,3 @@
-# HashSet: A simple example of a use case
-
 class Solution:
     def containsDuplicate(self, nums: list[int]) -> bool:
         dups = set()

@@ -1,5 +1,3 @@
-# HashMap: A simple use case
-
 from collections import defaultdict
 
 class Solution:

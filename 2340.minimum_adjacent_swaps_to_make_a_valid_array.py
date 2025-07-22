@@ -1,17 +1,14 @@
 class Solution:
-    def minimumSwaps(self, nums: List[int]) -> int:
-        minV, maxV = min(nums),max(nums)
-        count = 0
+    def minimumSwaps(self, nums: list[int]) -> int:
+        maxN,minN = 0,100001
+        maxI,minI = 0,0
         for i in range(len(nums)):
             n = nums[i]
-            if n == minV:
-                count += i
-                break
-        for j in range(len(nums)-1,-1,-1):
-            n = nums[j]
-            if n == maxV:
-                count += len(nums)-j-1
-                break
-        if i > j:
-            count -= 1
-        return count
+            if n >= maxN:
+                maxN, maxI = n, i
+            if n < minN:
+                minN, minI = n, i
+        res = (len(nums) - maxI - 1) + minI
+        if minI > maxI:
+            res -= 1
+        return res
