@@ -6,8 +6,7 @@ class Solution:
             # skip over duplicates
             if i > 0 and nums[i-1] == nums[i]:
                 continue
-            j = i + 1
-            k = len(nums) - 1
+            j,k = i + 1, len(nums) - 1
             while j < k:
                 sum = nums[j] + nums[k] + nums[i]
                 if sum == 0:
