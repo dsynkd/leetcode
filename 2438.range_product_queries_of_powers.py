@@ -11,11 +11,12 @@ class Solution:
                 powers += [p] * a
             n %= p
             p //= 2
+        # sort in non-decreasing order
         powers = powers[::-1]
         res = []
         for i,j in queries:
             a = 1
-            for k in range(i,j+1):
+            for k in range(i,j+1): # j+1 for inclusive range
                 a *= powers[k]
             res.append(a % (pow(10,9)+7))
         return res
