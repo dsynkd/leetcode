@@ -1,6 +1,3 @@
-# Approach: Heap
-# Time Complexity: O(n log(n))
-
 from collections import Counter
 import heapq
 
