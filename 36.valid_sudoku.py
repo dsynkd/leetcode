@@ -1,7 +1,7 @@
 class Solution:
     def isValidSudoku(self, board: list[list[str]]) -> bool:
         n = len(board)
-        assert(n == len(board[0]))
+        assert(n == len(board[0]) and n == 9)
 
         rows = [set() for _ in range(n)]
         cols = [set() for _ in range(n)]

@@ -8,74 +8,24 @@ class Solution:
         # True = Has Queen, False = Does not have queen
         rows = [False] * n
         cols = [False] * n
-
-        # Stores all solved boards
+        pos_diag = [False] * (n*2-1)
+        neg_diag = [False] * (n*2-1)
         self.res = []
 
-        # i = row
+        # i = row, k = number of queens on the board
         def dfs(i,k):
             if k == n:
                 self.res.append(deepcopy(board))
                 return
             for j in range(n):
-                if rows[i] or cols[j] or board[i][j] == 'Q':
+                if rows[i] or cols[j] or board[i][j] == 'Q' or pos_diag[i+j] or neg_diag[n-j-1+i]:
                     continue
-                # check positive diagonal upwards
-                qFound = False
-                a2, b2 = i-1,j+1
-                while a2 >= 0 and b2 < n:
-                    if board[a2][b2] == 'Q':
-                        qFound = True
-                        break
-                    a2 -= 1
-                    b2 +=1
-                if qFound:
-                    continue
-
-                # check positive diagonal downwards
-                qFound = False
-                a2, b2 = i+1,j+1
-                while a2 < n and b2 < n:
-                    if board[a2][b2] == 'Q':
-                        qFound = True
-                        break
-                    a2 += 1
-                    b2 +=1
-                if qFound:
-                    continue
-                    
-                # check negative diagonal upwards
-                qFound = False
-                a2, b2 = i-1,j-1
-                while a2 >= 0 and b2 >= 0:
-                    if board[a2][b2] == 'Q':
-                        qFound = True
-                        break
-                    a2 -= 1
-                    b2 -=1
-                if qFound:
-                    continue
-
-                # check negative diagonal downwards
-                qFound = False
-                a2, b2 = i+1,j-1
-                while a2 < n and b2 >= 0:
-                    if board[a2][b2] == 'Q':
-                        qFound = True
-                        break
-                    a2 += 1
-                    b2 -=1
-                if qFound:
-                    continue
-
                 board[i][j] = 'Q'
-                rows[i] = True
-                cols[j] = True
+                rows[i] = cols[j] = pos_diag[i+j] = neg_diag[n-j-1+i] = True
                 dfs(i+1,k+1)
                 # Backtrack
                 board[i][j] = '.'
-                rows[i] = False
-                cols[j] = False
+                rows[i] = cols[j] = pos_diag[i+j] = neg_diag[n-j-1+i] = False
         
         dfs(0,0)
 
