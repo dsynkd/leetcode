@@ -1,5 +1,3 @@
-# Approach: Two Pointer, skip any character that is not alphanumeric
-
 class Solution:
     def isPalindrome(self, s: str) -> bool:
 
