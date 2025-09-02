@@ -1,11 +1,3 @@
-#
-# @lc app=leetcode id=63 lang=python3
-#
-# [63] Unique Paths II
-#
-
-# @lc code=start
-
 import numpy
 
 class Solution:
@@ -33,9 +25,3 @@ class Solution:
         res = int(_uniquePaths(m-1, n-1))
         
         return res
-
-# @lc code=end
-
-s = Solution()
-print(s.uniquePathsWithObstacles([[0,1],[0,0]]))
-
