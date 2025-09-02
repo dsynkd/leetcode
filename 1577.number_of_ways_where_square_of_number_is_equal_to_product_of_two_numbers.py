@@ -19,4 +19,3 @@ class Solution:
                     res += factors[factor]
                     factors[n2] += 1
         return res
-        
