@@ -1,5 +1,3 @@
-# Same as Fibonacci Numbers
-
 class Solution:
     def climbStairs(self, n: int) -> int:
         if n == 1:
