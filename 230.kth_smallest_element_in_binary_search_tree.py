@@ -1,5 +1,3 @@
-# InOrder traversal of a BST gives the list of its nodes in sorted order
-
 from typing import Optional
 
 class TreeNode:
@@ -10,14 +8,14 @@ class TreeNode:
 
 class Solution:
     def kthSmallest(self, root: Optional[TreeNode], k: int) -> int:
-        inorder = []
+        res = []
 
         def dfs(node):
             if not node:
                 return
             dfs(node.left)
-            inorder.append(node.val)
+            res.append(node.val)
             dfs(node.right)
 
         dfs(root)
-        return inorder[k-1]
+        return res[k-1]
