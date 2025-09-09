@@ -1,4 +1,11 @@
 class Solution:
     def rotate(self, nums: list[int], k: int) -> None:
-        for _ in range(k):
-            nums.insert(0, nums.pop())
+        def reverse(i,j):
+            while i < j:
+                nums[i], nums[j] = nums[j], nums[i]
+                i += 1
+                j -= 1
+
+        reverse(0, len(nums)-1)
+        reverse(0, k-1)
+        reverse(k, len(nums)-1)
