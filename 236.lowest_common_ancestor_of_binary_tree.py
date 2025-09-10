@@ -13,13 +13,11 @@ class Solution:
             if node in (p,q):
                 return node
             
-            l = dfs(node.left)
-            r = dfs(node.right)
+            left = dfs(node.left)
+            right = dfs(node.right)
 
-            if l and r:
+            if left and right:
                 return node
-            return l or r
+            return left or right
         
-        res = dfs(root)
-        assert(res)
-        return res
+        return dfs(root)
