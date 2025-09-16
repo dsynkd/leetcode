@@ -4,16 +4,17 @@ class Solution:
         res = []
         path = []
 
-        def dfs(i: int):
+        def dfs(i):
             if i == len(nums):
                 res.append(path.copy())
                 return
-            path.append(nums[i])
+            n = nums[i]
+            path.append(n)
             dfs(i+1)
             path.pop()
-            while i < len(nums)-1 and nums[i+1] == nums[i]:
+            while i < len(nums) and nums[i] == n:
                 i += 1
-            dfs(i+1)
+            dfs(i)
         
         dfs(0)
         return res
