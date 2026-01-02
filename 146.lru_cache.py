@@ -15,22 +15,22 @@ class Node:
 class LRUCache:
 
     def __init__(self, capacity: int):
-        assert(capacity > 0)
         self.capacity = capacity
         self.cache = dict()
+        
         # Sentinel Nodes
         self.head = self.tail = Node(0,0)
-        self.tail.next = self.head
         self.head.prev = self.tail
+        self.tail.next = self.head
 
     def _remove(self, node: Node):
-        assert(node.prev and node.next)
+        assert(node.prev and node.next) # We can make this assertion because of dummy nodes
         node.prev.next, node.next.prev = node.next, node.prev
 
     def _append(self, node: Node):
         node.prev = self.head
         node.next = self.head.next
-        assert(self.head.next)
+        assert(self.head.next) # Dummy node assertion again
         self.head.next.prev = node
         self.head.next = node
 
@@ -57,6 +57,6 @@ class LRUCache:
 
         if len(self.cache) > self.capacity:
             node = self.tail.prev
-            assert(node)
+            assert(node) # Dummy node again
             self._remove(node)
             del self.cache[node.key]
