@@ -11,7 +11,7 @@ class Node:
         self.bottomRight = bottomRight
 
 class Solution:
-    def construct(self, grid: list[list[int]]) -> 'Node':
+    def construct(self, grid: list[list[int]]) -> Node:
         n = len(grid)
 
         def dfs(y1, y2, x1, x2):
