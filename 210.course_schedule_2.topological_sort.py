@@ -1,6 +1,5 @@
 from collections import defaultdict, deque
 
-
 class Solution:
     def findOrder(self, n: int, prerequisites: list[list[int]]) -> list[int]:
         adj = defaultdict(list)
