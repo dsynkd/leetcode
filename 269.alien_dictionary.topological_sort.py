@@ -20,27 +20,24 @@ class Solution:
                 adj[words[i-1][j]].add(words[i][j])
 
         # Construct in-degrees
-        indegree = defaultdict(int)
+        in_degree = defaultdict(int)
         for k,nodes in adj.items():
             for node in nodes:
-                indegree[node] += 1
+                in_degree[node] += 1
 
-        # Kahn's algorithm for topological ordering
+        # Kahn's algorithm 
         q = deque()
         for c in alphabet:
-            if c not in indegree:
+            if c not in in_degree:
                 q.append(c)
     
         res = []
         while q:
             node = q.popleft()
             res.append(node)
-            for neighbor in adj[node]:
-                indegree[neighbor] -= 1
-                if indegree[neighbor] == 0:
-                    q.append(neighbor)
+            for v in adj[node]:
+                in_degree[v] -= 1
+                if in_degree[v] == 0:
+                    q.append(v)
 
-        if len(alphabet) != len(res):
-            return ''
-
-        return ''.join(res)
+        return ''.join(res) if len(res) == len(alphabet) else ''
