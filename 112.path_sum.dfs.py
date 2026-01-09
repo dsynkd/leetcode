@@ -8,7 +8,7 @@ class TreeNode:
 
 class Solution:
     def hasPathSum(self, root: Optional[TreeNode], targetSum: int) -> bool:
-        def dfs(node, sum) -> bool:
+        def dfs(node: Optional[TreeNode], sum: int) -> bool:
             if not node:
                 return False
             sum += node.val

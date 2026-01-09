@@ -1,7 +1,3 @@
-# Approach: DFS
-# Similar to "257. Binary Tree Paths"
-# Make sure to copy the path arg, since python is pass by reference
-
 from typing import Optional
 
 class TreeNode:
@@ -12,17 +8,19 @@ class TreeNode:
 
 class Solution:
     def pathSum(self, root: Optional[TreeNode], targetSum: int) -> list[list[int]]:
-        paths = []
+        res = []
+        path = []
 
-        def dfs(path: list[int], tree: Optional[TreeNode]):
-            if tree is None:
+        def dfs(node: Optional[TreeNode]):
+            if node is None:
                 return
-            path += [tree.val]
-            if tree.right is None and tree.left is None: # Leaf Found
+            path.append(node.val)
+            if not node.right and not node.left:
                 if sum(path) == targetSum:
-                    paths.append(path)
-            dfs(path[:], tree.left)
-            dfs(path[:], tree.right)
+                    res.append(path.copy())
+            dfs(node.left)
+            dfs(node.right)
+            path.pop()
 
-        dfs([], root)
-        return paths
+        dfs(root)
+        return res
