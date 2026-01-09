@@ -1,6 +1,3 @@
-# Approach: DFS
-# Decision version of "113. Path Sum 2"
-
 from typing import Optional
 
 class TreeNode:
@@ -11,13 +8,12 @@ class TreeNode:
 
 class Solution:
     def hasPathSum(self, root: Optional[TreeNode], targetSum: int) -> bool:
-
-        def dfs(sum: int, tree: Optional[TreeNode]) -> bool:
-            if tree is None:
+        def dfs(node, sum) -> bool:
+            if not node:
                 return False
-            sum += tree.val
-            if tree.left is None and tree.right is None:
+            sum += node.val
+            if not node.left and not node.right:
                 return sum == targetSum
-            return dfs(sum, tree.left) or dfs(sum, tree.right)
+            return dfs(node.left, sum) or dfs(node.right, sum)
         
-        return dfs(0, root)
+        return dfs(root, 0) if root else False
