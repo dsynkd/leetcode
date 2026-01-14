@@ -5,9 +5,9 @@ class Solution:
         counter = defaultdict(int)
         counter[0] += 1
         res = 0
-        sum = 0
+        Z = 0
         for n in nums:
-            sum += n
-            res += counter[sum - k]
-            counter[sum] += 1
+            Z += n
+            res += counter[Z - k]
+            counter[Z] += 1
         return res
