@@ -7,13 +7,11 @@ class Solution:
             diff[i] += 1
             diff[j] -= 1
         
-        c = 0
-        s = 0
-        res = []
-        for k in sorted(diff.keys()):
-            if c == 0 and diff[k] >= 0:
-                s = k
-            c += diff[k]
+        s,c,res = 0,0,[]
+        for p in sorted(diff.keys()):
+            if c == 0 and diff[p] >= 0:
+                s = p
+            c += diff[p]
             if c == 0:
-                res.append([s, k])
+                res.append([s, p])
         return res
