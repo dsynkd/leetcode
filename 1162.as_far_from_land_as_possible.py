@@ -3,24 +3,26 @@ from collections import deque
 class Solution:
     def maxDistance(self, grid: list[list[int]]) -> int:
         n = len(grid)
-        queue = deque()
+        Q = deque()
 
         for i in range(n):
             for j in range(n):
                 if grid[i][j] == 1:
-                    queue.append((i,j,0))
+                    Q.append((i,j,0))
 
         res = 0
-        visited = set()
-        while queue:
-            (i,j,d) = queue.popleft()
-            if not (0 <= i < n) or not (0 <= j < n) or (i,j) in visited:
+        V = set()
+        while Q:
+            (i,j,d) = Q.popleft()
+            if not (0 <= i < n) or not (0 <= j < n):
                 continue
-            queue.append((i-1, j,   d+1))
-            queue.append((i+1, j,   d+1))
-            queue.append((i  , j-1, d+1))
-            queue.append((i  , j+1, d+1))
-            visited.add((i,j))
+            if (i,j) in V:
+                continue
+            V.add((i,j))
             res = d
+            Q.append((i-1, j,   d+1))
+            Q.append((i+1, j,   d+1))
+            Q.append((i  , j-1, d+1))
+            Q.append((i  , j+1, d+1))
         
         return res or -1
