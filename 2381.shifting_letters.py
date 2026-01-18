@@ -15,8 +15,7 @@ class Solution:
         R = ord('z') - ord('a') + 1
 
         for i in range(n):
-            shift = diff[i] if diff[i] > 0 else diff[i] + R
-            c = (ord(s[i]) - ord('a') + shift) % R + ord('a')
+            c = (ord(s[i]) - ord('a') + diff[i]) % R + ord('a')
             res += chr(c)
         
         return res
