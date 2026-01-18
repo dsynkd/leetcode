@@ -13,6 +13,7 @@ class Solution:
         tree = defaultdict(list)
         queue = deque()
         queue.append((root, 0))
+
         while queue:
             node, level = queue.popleft()
             if not node:
