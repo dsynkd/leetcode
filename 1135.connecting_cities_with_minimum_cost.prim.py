@@ -7,9 +7,8 @@ class Solution:
             adj[a-1].append((b-1, c))
             adj[b-1].append((a-1, c))
         
-        print(adj)
-        visited = set()
         heap = [(0, 0)]
+        visited = set()
         res = 0
 
         while heap:
