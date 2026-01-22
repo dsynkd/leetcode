@@ -8,30 +8,31 @@ class Trie:
         self.root = TrieNode()
 
     def insert(self, word: str) -> None:
-        cur = self.root
+        node = self.root
+        
         for c in word:
-            i = ord(c) - ord("a")
-            if cur.children[i] == None:
-                cur.children[i] = TrieNode()
-            cur = cur.children[i]
-        cur.endOfWord = True
+            i = ord(c) - ord('a')
+            if not node.children[i]:
+                node.children[i] = TrieNode()
+            node = node.children[i]
+        node.endOfWord = True
 
     def search(self, word: str) -> bool:
-        cur = self.root
+        node = self.root
         for c in word:
             i = ord(c) - ord("a")
-            if cur.children[i] is None:
+            if node.children[i] is None:
                 return False
             else:
-                cur = cur.children[i]
-        return cur.endOfWord
+                node = node.children[i]
+        return node.endOfWord
 
     def startsWith(self, prefix: str) -> bool:
-        cur = self.root
+        node = self.root
         for c in prefix:
             i = ord(c) - ord("a")
-            if cur.children[i] is None:
+            if node.children[i] is None:
                 return False
             else:
-                cur = cur.children[i]
+                node = node.children[i]
         return True

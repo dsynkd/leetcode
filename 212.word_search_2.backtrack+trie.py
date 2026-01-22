@@ -1,8 +1,3 @@
-# Approach: Backtracking + Trie
-# Similar to "79. Word Search" but iterate down the Trie instead of a given String
-# Time Complexity: O(N.4^N)
-# Verdict: Pass
-
 class TrieNode:
     def __init__(self):
         self.children = dict()
