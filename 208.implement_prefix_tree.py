@@ -20,19 +20,17 @@ class Trie:
     def search(self, word: str) -> bool:
         node = self.root
         for c in word:
-            i = ord(c) - ord("a")
-            if node.children[i] is None:
+            i = ord(c) - ord('a')
+            if not node.children[i]:
                 return False
-            else:
-                node = node.children[i]
+            node = node.children[i]
         return node.endOfWord
 
     def startsWith(self, prefix: str) -> bool:
         node = self.root
         for c in prefix:
-            i = ord(c) - ord("a")
-            if node.children[i] is None:
+            i = ord(c) - ord('a')
+            if not node.children[i]:
                 return False
-            else:
-                node = node.children[i]
+            node = node.children[i]
         return True
