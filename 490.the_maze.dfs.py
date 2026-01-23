@@ -1,5 +1,5 @@
 class Solution:
-    def hasPath(self, maze: List[List[int]], start: List[int], destination: List[int]) -> bool:
+    def hasPath(self, maze: list[list[int]], start: list[int], destination: list[int]) -> bool:
         m = len(maze)
         n = len(maze[0])
         D = [(1,0), (-1,0), (0,1), (0,-1)]
