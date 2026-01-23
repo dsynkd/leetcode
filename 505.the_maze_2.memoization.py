@@ -3,7 +3,7 @@ class Solution:
         m = len(maze)
         n = len(maze[0])
         D = [(1,0), (-1,0), (0,1), (0,-1)]
-        cache = dict()
+        memo = dict()
         self.res = float('inf')
 
         def dfs(x,y,c):
@@ -20,8 +20,8 @@ class Solution:
                     i += dx
                     j += dy
                     d += 1
-                if (i,j) not in cache or cache[(i,j)] > d:
-                    cache[(i,j)] = d
+                if (i,j) not in memo or memo[(i,j)] > d:
+                    memo[(i,j)] = d
                     dfs(i,j,d)
         
         i,j = start

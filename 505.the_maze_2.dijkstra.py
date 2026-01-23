@@ -8,10 +8,10 @@ class Solution:
         visited = set()
 
         x,y = start
-        queue = []
-        queue.append((0,x,y)) 
-        while queue:
-            c,x,y = heappop(queue)
+        heap = []
+        heap.append((0,x,y)) 
+        while heap:
+            c,x,y = heappop(heap)
             if (x,y) == tuple(destination):
                 return c
             if (x,y) in visited:
@@ -24,6 +24,6 @@ class Solution:
                     i += dx
                     j += dy
                     d += 1
-                heappush(queue, (d-1, i-dx, j-dy))
+                heappush(heap, (d-1, i-dx, j-dy))
         
         return -1
