@@ -7,25 +7,21 @@ class Solution:
         for source,dest,cost in flights:
             adj[source].append((dest, cost))
         
-        D = defaultdict(lambda: 1e5)
-        D[(src,0)] = 0
         heap = [(0, src, 0)]
+        cache = [float('inf')] * n
         
         while heap:
-            d, u, c = heappop(heap)
+            w1, v, c = heappop(heap)
             
-            if u == dst:
-                return d
-            
-            if d > D[(u,c)] or c > k:
+            if v == dst:
+                return w1
+            if c > k:
                 continue
+            cache[v] = c
             
             c += 1
-            for v,w in adj[u]:
-                nd = d + w
-                if nd >= D[(v,c)]:
-                    continue
-                D[(v, c)] = nd
-                heappush(heap, (nd, v, c))
+            for u,w2 in adj[v]:
+                if c + 1 < cache[u]:
+                    heappush(heap, (w1 + w2, v, c + 1))
         
         return -1
