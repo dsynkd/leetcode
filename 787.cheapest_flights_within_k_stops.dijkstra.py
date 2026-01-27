@@ -21,7 +21,7 @@ class Solution:
             
             c += 1
             for u,w2 in adj[v]:
-                if c + 1 < cache[u]:
-                    heappush(heap, (w1 + w2, v, c + 1))
+                if c < cache[u]:
+                    heappush(heap, (w1 + w2, v, c))
         
         return -1
