@@ -9,11 +9,10 @@ class TreeNode:
 class Solution:
     def inorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
         tree = []
-        self._inorder(root, tree)
+        def dfs(node):
+            if not node:
+                return
+            dfs(node.left)
+            tree.append(node.val)
+            dfs(node.right)
         return tree
-
-    def _inorder(self, root: Optional[TreeNode], tree: list[int]):
-        if not root: return
-        self._inorder(root.left, tree)
-        tree.append(root.val)
-        self._inorder(root.right, tree)
