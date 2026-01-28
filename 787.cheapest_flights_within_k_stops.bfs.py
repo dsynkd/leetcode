@@ -11,14 +11,15 @@ class Solution:
         cache = [float('inf')] * n
         
         while queue:
-            w1, v, c = queue.popleft()
+            t, v, c = queue.popleft()
             
             if c > k:
                 continue
             
-            for u,w2 in adj[v]:
-                if w1 + w2 < cache[u]:
-                    cache[u] = w1 + w2
-                    queue.append((w1 + w2, u, c + 1))
+            for u,w in adj[v]:
+                T = t + w
+                if T < cache[u]:
+                    cache[u] = T
+                    queue.append((T, u, c + 1))
         
         return -1 if cache[dst] == float('inf') else int(cache[dst])
