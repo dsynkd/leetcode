@@ -11,17 +11,17 @@ class Solution:
         cache = [float('inf')] * n
         
         while heap:
-            distance, v, stops = heappop(heap)
+            t, v, c = heappop(heap)
             
             if v == dst:
-                return distance
-            if stops > k:
+                return t
+            if c > k:
                 continue
             
-            stops += 1
+            c += 1
             for u,w in adj[v]:
-                if stops < cache[u]:
-                    cache[u] = stops
-                    heappush(heap, (distance + w, v, stops))
+                if c < cache[u]:
+                    cache[u] = c
+                    heappush(heap, (t + w, v, c))
         
         return -1
