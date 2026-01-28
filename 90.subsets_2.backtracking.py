@@ -4,7 +4,7 @@ class Solution:
         res = []
         path = []
 
-        def dfs(i):
+        def dfs(i: int):
             if i == len(nums):
                 res.append(path.copy())
                 return
