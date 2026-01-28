@@ -1,7 +1,6 @@
 from collections import defaultdict
 from heapq import heappop, heappush
 
-
 class Solution:
     def minimumCost(self, n: int, highways: list[list[int]], discounts: int) -> int:
         adj = defaultdict(list)
