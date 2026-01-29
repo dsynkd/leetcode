@@ -15,10 +15,6 @@ class Solution:
             rmax[i] = m
 
         for i in range(1, len(height)-1):
-            h = height[i]
-            l = lmax[i]
-            r = rmax[i]
-            diff = min(l,r) - h 
-            res += diff
+            res += min(lmax[i],rmax[i]) - height[i]
         
         return res
