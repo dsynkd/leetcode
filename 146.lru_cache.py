@@ -52,6 +52,6 @@ class LRUCache:
         self._append(node)
 
         if len(self.cache) > self.capacity:
-            node = self.tail.prev
-            self._remove(node)
-            del self.cache[node.key]
+            lru = self.lru.prev
+            self._remove(lru)
+            del self.cache[lru.key]
