@@ -2,10 +2,6 @@ from typing import Self
 
 
 class Node:
-    
-    next: Self | None
-    prev: Self | None
-
     def __init__(self, key: int, value: int):
         self.key = key
         self.value = value
@@ -18,19 +14,19 @@ class LRUCache:
         self.capacity = capacity
         self.cache = dict()
         
-        # Sentinel Nodes
-        self.head = self.tail = Node(0,0)
-        self.head.prev = self.tail
-        self.tail.next = self.head
+        root = Node(0,0)
+        root.next = root
+        root.prev = root
+        self.head = root
+        self.tail = root
 
     def _remove(self, node: Node):
-        assert(node.prev and node.next) # We can make this assertion because of dummy nodes
-        node.prev.next, node.next.prev = node.next, node.prev
+        node.prev.next = node.next
+        node.next.prev = node.prev
 
     def _append(self, node: Node):
         node.prev = self.head
         node.next = self.head.next
-        assert(self.head.next) # Dummy node assertion again
         self.head.next.prev = node
         self.head.next = node
 
@@ -57,6 +53,5 @@ class LRUCache:
 
         if len(self.cache) > self.capacity:
             node = self.tail.prev
-            assert(node) # Dummy node again
             self._remove(node)
             del self.cache[node.key]

@@ -1,15 +1,9 @@
 class Logger:
-
     def __init__(self):
-        self.messages = dict()
+        self.cache = dict()
 
     def shouldPrintMessage(self, timestamp: int, message: str) -> bool:
-        if message not in self.messages:
-            self.messages[message] = timestamp
+        if message not in self.cache or timestamp - self.cache[message] >= 10:
+            self.cache[message] = timestamp
             return True
-        diff = timestamp - self.messages[message]
-        if diff <= 10:
-            return False
-        else:
-            self.messages[message] = timestamp
-            return True
+        return False
