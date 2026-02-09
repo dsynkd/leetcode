@@ -1,4 +1,4 @@
-from random import randint
+from random import randrange
 
 class RandomizedSet:
 
@@ -25,4 +25,4 @@ class RandomizedSet:
         return True
 
     def getRandom(self) -> int:
-        return self.values[randint(0, len(self.values)-1)]
+        return self.values[randrange(len(self.values))]
