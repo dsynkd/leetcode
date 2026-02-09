@@ -1,3 +1,5 @@
+from random import randint
+
 class RandomizedSet:
 
     def __init__(self):
@@ -15,8 +17,9 @@ class RandomizedSet:
         if val not in self.cache:
             return False
         index = self.cache[val]
-        self.values[index], self.values[-1] = self.values[-1], self.values[index]
-        self.cache[self.values[index]] = index
+        lastItem = self.values[-1]
+        self.values[index] = lastItem
+        self.cache[lastItem] = index
         self.values.pop()
         del self.cache[val]
         return True
