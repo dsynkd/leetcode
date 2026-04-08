@@ -1,27 +1,24 @@
-import itertools
-import math
-
 class Solution:
     def maxPoints(self, points: list[list[int]]) -> int:
-        lines = set()
-        for ((x1,y1), (x2,y2)) in itertools.combinations(points, 2):
-            if x1 == x2:
-                m = math.inf
-                b = x1
-            else:
-                m = (y2-y1)/(x2-x1)
-                b = y2 - (m * x2)
-            lines.add((m,b))
+        res = 1
 
-        r = 1
-        for (m,b) in lines:
-            c = 0
-            for (x,y) in points:
-                if m == math.inf and b == x:
-                    c += 1
-                elif math.isclose(m*x + b, y):
-                    c += 1
-                if c > r:
-                    r = c
-
-        return r
+        for i in range(len(points)):
+            x1, y1 = points[i]
+            # p/q = r/s
+            for j in range(i+1, len(points)):
+                x2, y2 = points[j]
+                assert(not (x1 == x2 and y1 == y2))
+                p = (y2 - y1)
+                q = (x2 - x1)
+                c = 2
+                
+                for k in range(j+1, len(points)):
+                    x3,y3 = points[k]
+                    r = (y3 - y1)
+                    s = (x3 - x1)
+                    if p * s == r * q:
+                        c += 1
+                
+                res = max(res, c)
+        
+        return res
