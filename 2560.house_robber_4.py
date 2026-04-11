@@ -1,23 +1,25 @@
 class Solution:
-    def minCapability(self, nums, k):
-        l, r = 1, max(nums)
-        N = len(nums)
-
-        while l < r:
-            m = (l + r) // 2
-            c = 0
-
+    def minCapability(self, nums: list[int], k: int) -> int:
+        def can(cap):
             i = 0
-            while i < N:
-                if nums[i] <= m:
+            c = 0
+            
+            while i < len(nums) and c < k:
+                if nums[i] <= cap:
                     c += 1
                     i += 2
                 else:
                     i += 1
+                
+            return c >= k
 
-            if c >= k:
-                r = m
+        l, r = min(nums), max(nums)
+        
+        while l <= r:
+            m = l + (r - l) // 2
+            if can(m):
+                r = m - 1
             else:
                 l = m + 1
-
+        
         return l
