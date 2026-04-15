@@ -20,4 +20,6 @@ class Solution:
                 return node
             return left or right
         
-        return dfs(root)
+        res = dfs(root)
+        assert(res)
+        return res
